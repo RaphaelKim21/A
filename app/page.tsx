@@ -251,8 +251,6 @@ export default function LovePage() {
     });
   };
 
-
-
   // NOVO COMPONENTE: Partículas APENAS para a seção SIM/NÃO
   const SectionParticles = () => {
     return (
@@ -594,7 +592,7 @@ export default function LovePage() {
                 className="mb-10 md:mb-16 overflow-hidden rounded-2xl md:rounded-[2rem] shadow-2xl h-[300px] md:h-[500px] bg-red-800 relative group"
                 whileHover={{ scale: typeof window !== 'undefined' && window.innerWidth >= 768 ? 1.02 : 1 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }} // SUAVIZADO
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
               >
                 <ImageReveal
                   src="/foto_horizontal_1.jpg"
@@ -686,7 +684,6 @@ export default function LovePage() {
                   initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                   viewport={{ once: false }}
-                  transition={{ duration: 0.8, delay: i * 0.1 }}
                   whileHover={{
                     scale: 1.03,
                     rotate: 2,
@@ -696,7 +693,14 @@ export default function LovePage() {
                     scale: 0.98,
                     rotate: 0
                   }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }} // SUAVIZADO
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 30,
+                    opacity: { duration: 0.8 },
+                    scale: { duration: 0.8 },
+                    rotate: { duration: 0.8 }
+                  }}
                   className="rounded-xl md:rounded-2xl overflow-hidden bg-slate-100 shadow-lg border-2 md:border-4 border-white relative group cursor-pointer break-inside-avoid"
                 >
                   <ImageReveal src={src} alt={`Foto ${i + 3}`} className="" />
@@ -715,12 +719,13 @@ export default function LovePage() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: false }}
+                transition={{ duration: 0.8 }}
               >
                 <motion.p
                   className="text-xl sm:text-2xl md:text-4xl italic text-slate-500 max-w-5xl mx-auto leading-relaxed"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }} // SUAVIZADO
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 >
                   "Queria que você se enxergasse do jeito que eu te enxergo, seu sorriso me acalma,
                   sua risada me deixa feliz, seus beijos me confortam."
@@ -787,6 +792,7 @@ export default function LovePage() {
                   <motion.div
                     className="absolute top-0 left-0 w-4/5 h-4/5 rounded-2xl overflow-hidden shadow-2xl z-10"
                     whileHover={{ scale: 1.02, zIndex: 30 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   >
                     <ImageReveal src="/foto_5.jpg" alt="Nossos Momentos" className="h-full" />
                   </motion.div>
@@ -817,6 +823,7 @@ export default function LovePage() {
                       <motion.div
                         className="p-6 bg-white rounded-2xl border-l-8 border-red-600 shadow-md"
                         whileHover={{ x: 10 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       >
                         <p className="text-sm md:text-base text-gray-400 italic font-normal">
                           (a não ser que seja para ver o jogo do GIGANTE Palmeiras)
@@ -893,9 +900,14 @@ export default function LovePage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: false }}
-                transition={{ duration: 1, delay: 0.8 }}
+                transition={{ 
+                  duration: 1, 
+                  delay: 0.8,
+                  type: "spring", 
+                  stiffness: 300, 
+                  damping: 30 
+                }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }} // SUAVIZADO
               >
                 Quando penso no amor, <br className="sm:hidden" />
                 <span className="text-red-600 font-bold">penso em você</span>
@@ -927,10 +939,15 @@ export default function LovePage() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false }}
-                  transition={{ duration: 0.8, delay: i * 0.2 }}
                   whileHover={{ y: -10 }}
                   whileTap={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }} // SUAVIZADO
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 30,
+                    opacity: { duration: 0.8 },
+                    y: { duration: 0.8 }
+                  }}
                   className="relative group h-[500px] overflow-hidden rounded-2xl bg-slate-100 border border-slate-100 shadow-sm"
                 >
                   {/* Imagem de Fundo */}
@@ -1036,6 +1053,7 @@ export default function LovePage() {
                       }}
                       whileHover={{ scale: 1.1, boxShadow: "0 0 30px rgba(220, 38, 38, 0.6)" }}
                       whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       className="px-12 py-4 bg-red-600 text-white font-black text-2xl rounded-full shadow-2xl z-20 w-48"
                     >
                       SIM!
