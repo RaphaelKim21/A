@@ -179,6 +179,660 @@ const CinematicTransition = ({ isAnimating }: { isAnimating: boolean }) => {
   );
 };
 
+// COMPONENTE: BILHETE ROMÂNTICO - ELEGANTE E PROFISSIONAL
+const MagicGiftBox = () => {
+  const [stage, setStage] = useState(0);
+  const [giftRevealed, setGiftRevealed] = useState(false);
+
+  // Auto-progressão simples
+  useEffect(() => {
+    if (stage === 1) {
+      setTimeout(() => setStage(2), 2500);
+    } else if (stage === 2) {
+      setTimeout(() => setStage(3), 2000);
+    }
+  }, [stage]);
+
+  return (
+    <section 
+      id="gift-section" 
+      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-rose-50 via-pink-50 to-white relative overflow-hidden px-4 py-20"
+    >
+      {/* Pétalas Sutis de Fundo */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 180, 360],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: Math.random() * 8 + 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <Heart size={Math.random() * 20 + 10} className="text-rose-300" fill="currentColor" />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="relative z-10 w-full max-w-4xl">
+        {/* STAGE 0: Envelope Fechado */}
+        {stage === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <motion.h2
+              className="text-3xl md:text-5xl font-bold text-slate-800 mb-12"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              Uma mensagem especial para você
+            </motion.h2>
+
+            {/* Envelope */}
+            <motion.div
+              className="relative w-80 h-52 md:w-96 md:h-64 mx-auto cursor-pointer group"
+              onClick={() => setStage(1)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {/* Corpo do Envelope */}
+              <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl shadow-2xl border-2 border-red-200">
+                {/* Linhas decorativas */}
+                <div className="absolute top-4 left-4 right-4 h-px bg-red-200" />
+                <div className="absolute bottom-4 left-4 right-4 h-px bg-red-200" />
+              </div>
+
+              {/* Aba do Envelope */}
+              <motion.div
+                className="absolute -top-1 left-0 right-0 h-32 md:h-40 bg-gradient-to-br from-red-200 to-red-300 origin-top shadow-lg"
+                style={{
+                  clipPath: 'polygon(0 0, 50% 60%, 100% 0)',
+                }}
+                animate={{
+                  rotateX: [0, -5, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+
+              {/* Selo de Coração */}
+              <motion.div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                animate={{
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+              >
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
+                  <Heart size={32} className="text-white" fill="white" />
+                </div>
+              </motion.div>
+
+              {/* Sombra */}
+              <div className="absolute inset-0 top-full h-8 bg-black/10 blur-xl rounded-full scale-75" />
+            </motion.div>
+
+            <motion.p
+              className="mt-12 text-lg md:text-xl text-slate-600 font-medium"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              Clique para abrir
+            </motion.p>
+          </motion.div>
+        )}
+
+        {/* STAGE 1: Envelope Abrindo */}
+        {stage === 1 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="relative h-[600px] flex items-center justify-center"
+          >
+            {/* Envelope Base */}
+            <motion.div
+              className="absolute w-80 h-52 md:w-96 md:h-64 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl shadow-2xl border-2 border-red-200"
+              initial={{ y: 0 }}
+              animate={{ y: 20 }}
+            />
+
+            {/* Aba Abrindo */}
+            <motion.div
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-80 md:w-96 h-40 md:h-48 bg-gradient-to-br from-red-200 to-red-300 origin-bottom shadow-xl"
+              style={{
+                clipPath: 'polygon(0 100%, 50% 0, 100% 100%)',
+              }}
+              initial={{ rotateX: 0 }}
+              animate={{ rotateX: -180 }}
+              transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+            />
+
+            {/* Carta Saindo */}
+            <motion.div
+              className="absolute w-72 h-96 md:w-80 md:h-[450px] bg-white rounded-xl shadow-2xl border border-gray-200"
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: -50, opacity: 1 }}
+              transition={{ delay: 1, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Linhas decorativas na carta */}
+              <div className="absolute inset-0 p-8 flex flex-col gap-3">
+                {[...Array(8)].map((_, i) => (
+                  <div key={i} className="h-1 bg-gray-100 rounded" />
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.p
+              className="absolute bottom-10 text-xl md:text-2xl font-semibold text-slate-700"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+            >
+              Abrindo...
+            </motion.p>
+          </motion.div>
+        )}
+
+        {/* STAGE 2: Carta Expandindo */}
+        {stage === 2 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center justify-center"
+          >
+            <motion.div
+              className="w-80 md:w-[600px] bg-white rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-200"
+              initial={{ scale: 0.8, rotateY: 90 }}
+              animate={{ scale: 1, rotateY: 0 }}
+              transition={{ duration: 1.5, type: "spring" }}
+            >
+              {/* Linhas de texto aparecendo */}
+              <div className="space-y-4">
+                {[...Array(12)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="h-2 bg-gray-100 rounded"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                    style={{ transformOrigin: 'left' }}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* STAGE 3: Bilhete Completo com Mensagem E PRESENTE */}
+        {stage === 3 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="w-full max-w-4xl mx-auto"
+          >
+            {/* Bilhete Principal */}
+            <motion.div
+              className="bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-rose-100"
+              initial={{ scale: 0.9, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              transition={{ duration: 1, type: "spring", bounce: 0.3 }}
+            >
+              {/* Header do Bilhete */}
+              <div className="bg-gradient-to-r from-rose-100 to-pink-100 p-6 md:p-8 border-b-2 border-rose-200">
+                <motion.div
+                  className="flex items-center justify-center gap-3"
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <Heart size={32} className="text-rose-500" fill="currentColor" />
+                  <h3 className="text-3xl md:text-4xl font-black text-rose-600">
+                    Para Você
+                  </h3>
+                  <Heart size={32} className="text-rose-500" fill="currentColor" />
+                </motion.div>
+              </div>
+
+              {/* Corpo do Bilhete */}
+              <div className="p-8 md:p-12 space-y-8">
+                {/* Mensagem Principal */}
+                <motion.div
+                  className="space-y-6 text-slate-700 leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <p className="text-lg md:text-2xl font-serif italic text-center text-rose-600 font-semibold">
+                    "Feliz aniversário meu amor!"
+                  </p>
+
+                  <div className="space-y-4 text-base md:text-lg">
+                    <p>
+                      Espero que com esse site você consiga ver o quanto você é especial para mim. 
+                      Cada palavra aqui foi escrita pensando em você, em nós, e em tudo que vivemos juntos.
+                    </p>
+
+                    <p>
+                      Estarei sempre ao seu lado não importa a ocasião, nos bons e nos melhores momentos. 
+                      Você me completa de uma forma que eu nunca imaginei ser possível.
+                    </p>
+
+                    <p className="font-semibold text-rose-600">
+                      Nunca perca esse seu brilho de cair o queixo. Você ilumina minha vida todos os dias.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Divisória Decorativa */}
+                <motion.div
+                  className="flex items-center justify-center gap-3 py-4"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.8 }}
+                >
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
+                  <Sparkles size={20} className="text-rose-400" />
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
+                </motion.div>
+
+                {/* SEÇÃO DE REVELAÇÃO DO PRESENTE */}
+                <motion.div
+                  className="bg-gradient-to-br from-rose-50 to-pink-50 rounded-2xl p-6 md:p-8 border-2 border-rose-200"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 }}
+                >
+                  <AnimatePresence mode="wait">
+                    {!giftRevealed ? (
+                      // ANTES DE REVELAR - Card Interativo Elegante
+                      <motion.div
+                        key="question"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="text-center space-y-8"
+                      >
+                        <motion.h4
+                          className="text-2xl md:text-3xl font-black text-rose-600"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          Vamos descobrir o seu tão aguardado presente?
+                        </motion.h4>
+
+                        {/* Card Interativo ao invés de botão */}
+                        <motion.div
+                          onClick={() => setGiftRevealed(true)}
+                          className="relative mx-auto max-w-sm cursor-pointer group"
+                          whileHover={{ scale: 1.02, y: -5 }}
+                          whileTap={{ scale: 0.98 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.4 }}
+                        >
+                          {/* Glow animado de fundo */}
+                          <motion.div
+                            className="absolute -inset-1 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-400 rounded-3xl blur-lg"
+                            animate={{
+                              opacity: [0.5, 0.8, 0.5],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                          />
+
+                          {/* Card Principal */}
+                          <div className="relative bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl p-8 md:p-10 shadow-2xl overflow-hidden">
+                            {/* Efeito de brilho passando */}
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
+                              animate={{
+                                x: ['-200%', '200%'],
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                repeatDelay: 1,
+                                ease: "easeInOut",
+                              }}
+                            />
+
+                            {/* Conteúdo do Card */}
+                            <div className="relative z-10 space-y-4">
+                              {/* Ícone de presente animado */}
+                              <motion.div
+                                className="flex justify-center"
+                                animate={{
+                                  y: [0, -10, 0],
+                                  rotate: [0, 5, -5, 0],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  ease: "easeInOut",
+                                }}
+                              >
+                                <div className="relative">
+                                  {/* Círculo de fundo pulsante */}
+                                  <motion.div
+                                    className="absolute inset-0 bg-white rounded-full blur-xl"
+                                    animate={{
+                                      scale: [1, 1.3, 1],
+                                      opacity: [0.3, 0.6, 0.3],
+                                    }}
+                                    transition={{
+                                      duration: 2,
+                                      repeat: Infinity,
+                                    }}
+                                  />
+                                  
+                                  {/* Ícone */}
+                                  <motion.div
+                                    className="relative w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                                    animate={{
+                                      boxShadow: [
+                                        "0 0 20px rgba(255,255,255,0.5)",
+                                        "0 0 40px rgba(255,255,255,0.8)",
+                                        "0 0 20px rgba(255,255,255,0.5)",
+                                      ],
+                                    }}
+                                    transition={{
+                                      duration: 2,
+                                      repeat: Infinity,
+                                    }}
+                                  >
+                                    <Sparkles size={32} className="text-rose-500" />
+                                  </motion.div>
+                                </div>
+                              </motion.div>
+
+                              {/* Texto */}
+                              <motion.p
+                                className="text-xl md:text-2xl font-black text-white tracking-wide"
+                                animate={{
+                                  opacity: [0.9, 1, 0.9],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                }}
+                              >
+                                Toque para revelar
+                              </motion.p>
+
+                              {/* Indicador visual */}
+                              <motion.div
+                                className="flex justify-center gap-2"
+                                animate={{
+                                  y: [0, 5, 0],
+                                }}
+                                transition={{
+                                  duration: 1.5,
+                                  repeat: Infinity,
+                                }}
+                              >
+                                <div className="w-2 h-2 bg-white rounded-full" />
+                                <div className="w-2 h-2 bg-white/70 rounded-full" />
+                                <div className="w-2 h-2 bg-white/40 rounded-full" />
+                              </motion.div>
+                            </div>
+
+                            {/* Partículas decorativas */}
+                            {[...Array(6)].map((_, i) => (
+                              <motion.div
+                                key={i}
+                                className="absolute w-1 h-1 bg-white rounded-full"
+                                style={{
+                                  left: `${20 + i * 15}%`,
+                                  top: '20%',
+                                }}
+                                animate={{
+                                  y: [0, -30, 0],
+                                  opacity: [0, 1, 0],
+                                  scale: [0, 1, 0],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  delay: i * 0.3,
+                                }}
+                              />
+                            ))}
+                          </div>
+                        </motion.div>
+                      </motion.div>
+                    ) : (
+                      // DEPOIS DE REVELAR - Animação Simples e Elegante
+                      <motion.div
+                        key="reveal"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="relative"
+                      >
+                        {/* EXPLOSÃO DE CORAÇÕES */}
+                        <div className="absolute inset-0 pointer-events-none">
+                          {[...Array(25)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              className="absolute top-1/2 left-1/2"
+                              initial={{ 
+                                x: 0, 
+                                y: 0,
+                                scale: 0,
+                                opacity: 1 
+                              }}
+                              animate={{
+                                x: (Math.random() - 0.5) * 400,
+                                y: (Math.random() - 0.5) * 400,
+                                scale: [0, 1, 0],
+                                opacity: [1, 1, 0],
+                                rotate: Math.random() * 360,
+                              }}
+                              transition={{
+                                duration: 1.5,
+                                ease: "easeOut",
+                              }}
+                            >
+                              <Heart 
+                                size={Math.random() * 20 + 15} 
+                                className="text-rose-500" 
+                                fill="currentColor"
+                              />
+                            </motion.div>
+                          ))}
+                        </div>
+
+                        <motion.h4
+                          className="text-2xl md:text-3xl font-black text-center text-rose-600 mb-6"
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          Seu Presente!
+                        </motion.h4>
+
+                        {/* Imagem do Headset */}
+                        <motion.div
+                          className="relative w-64 h-64 md:w-80 md:h-80 mx-auto mb-6"
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{ delay: 0.4, duration: 0.6, type: "spring", bounce: 0.3 }}
+                        >
+                          {/* Glow suave */}
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-br from-rose-300 to-pink-300 rounded-full blur-3xl opacity-30"
+                            animate={{
+                              scale: [1, 1.2, 1],
+                            }}
+                            transition={{ duration: 3, repeat: Infinity }}
+                          />
+
+                          <motion.img
+                            src="/heat.png"
+                            alt="Headset Gamer"
+                            className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
+                            animate={{
+                              y: [0, -10, 0],
+                            }}
+                            transition={{ duration: 3, repeat: Infinity }}
+                          />
+                        </motion.div>
+
+                        {/* Informações do Produto */}
+                        <motion.div
+                          className="text-center space-y-3"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.6 }}
+                        >
+                          <h5 className="text-2xl md:text-3xl font-black text-slate-800">
+                            Logitech G PRO X
+                          </h5>
+                          <p className="text-lg md:text-xl font-semibold text-rose-600">
+                            Wireless Gaming Headset
+                          </p>
+                          <p className="text-sm md:text-base text-slate-600 italic pt-3">
+                            Para você curtir seus jogos com o melhor som! 🎮
+                          </p>
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {/* Divisória Decorativa */}
+                <motion.div
+                  className="flex items-center justify-center gap-3 py-4"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 2.3 }}
+                >
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
+                  <Heart size={20} className="text-rose-400" fill="currentColor" />
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-rose-300 to-transparent" />
+                </motion.div>
+
+                {/* Assinatura */}
+                <motion.div
+                  className="text-center space-y-3"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.5 }}
+                >
+                  <p className="text-2xl md:text-3xl font-bold text-rose-600">
+                    Te amo S2
+                  </p>
+                  <p className="text-sm md:text-base text-slate-500 italic">
+                    Com todo meu amor, hoje e sempre
+                  </p>
+                </motion.div>
+
+                {/* Corações Decorativos Finais */}
+                <motion.div
+                  className="flex justify-center gap-4 pt-6"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 2.7 }}
+                >
+                  {[...Array(5)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      animate={{
+                        y: [0, -10, 0],
+                        rotate: [0, 5, -5, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                      }}
+                    >
+                      <Heart 
+                        size={24} 
+                        className="text-rose-400" 
+                        fill="currentColor"
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Footer Decorativo */}
+              <div className="bg-gradient-to-r from-rose-50 to-pink-50 p-4 border-t-2 border-rose-100">
+                <motion.p
+                  className="text-center text-xs md:text-sm text-slate-500 italic"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.9 }}
+                >
+                  Feito com amor especialmente para você
+                </motion.p>
+              </div>
+            </motion.div>
+
+            {/* Confetes Sutis */}
+            <div className="fixed inset-0 pointer-events-none">
+              {[...Array(30)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: -50,
+                  }}
+                  initial={{ y: -50, opacity: 1, rotate: 0 }}
+                  animate={{
+                    y: typeof window !== 'undefined' ? window.innerHeight + 100 : 1000,
+                    opacity: 0,
+                    rotate: Math.random() * 360,
+                  }}
+                  transition={{
+                    duration: Math.random() * 3 + 4,
+                    delay: 2.5 + Math.random() * 2,
+                    ease: "linear",
+                  }}
+                >
+                  <Heart 
+                    size={Math.random() * 10 + 8} 
+                    className="text-rose-400" 
+                    fill="currentColor"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </div>
+    </section>
+  );
+};
+
 export default function LovePage() {
   const { scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -994,30 +1648,34 @@ export default function LovePage() {
           {/* Partículas APENAS nesta seção */}
           <SectionParticles />
 
-          {/* Animação DIFERENTE ao clicar em SIM - Zoom + Fade */}
+          {/* Animação DIFERENTE ao clicar em SIM - Zoom + Fade com SAÍDA */}
           <AnimatePresence>
             {showYesMessage && (
               <motion.div
                 className="fixed inset-0 z-[100] bg-red-600 flex items-center justify-center"
                 initial={{ scale: 0, borderRadius: "100%" }}
                 animate={{ scale: 1, borderRadius: "0%" }}
-                exit={{ opacity: 0 }}
+                exit={{ scale: 0, opacity: 0, borderRadius: "100%" }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 onAnimationComplete={() => {
-                  // Após 1.5s, rola para o footer
+                  // Após 1.5s mostrando a mensagem, começa a sair
                   setTimeout(() => {
-                    const footer = document.querySelector('footer');
-                    footer?.scrollIntoView({ behavior: 'smooth' });
+                    setShowYesMessage(false);
+                    // Após a animação de saída (0.5s), rola para a seção do presente
+                    setTimeout(() => {
+                      const giftSection = document.getElementById('gift-section');
+                      giftSection?.scrollIntoView({ behavior: 'smooth' });
+                    }, 800);
                   }, 1500);
                 }}
               >
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.6 }}
                   className="text-center"
                 >
-      
                   <h2 className="text-5xl md:text-8xl font-black text-white italic uppercase tracking-tighter">
                     É BOM MESMO
                   </h2>
@@ -1082,6 +1740,9 @@ export default function LovePage() {
             </FadeInSection>
           </div>
         </section>
+
+        {/* SECTION: CAIXA MÁGICA INTERATIVA - PRESENTE */}
+        <MagicGiftBox />
 
         {/* FOOTER - FINAL ÉPICO */}
         <footer className="min-h-screen flex flex-col items-center justify-center bg-[#111] text-white relative overflow-hidden px-4">
