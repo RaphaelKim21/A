@@ -4,33 +4,25 @@ import { Heart, Sparkles, Quote } from "lucide-react";
 import { useEffect, useState } from "react";
 
 // Importar as fontes do Google
-import { Pinyon_Script, Send_Flowers } from 'next/font/google';
-import { Yellowtail } from 'next/font/google';
+import { Abril_Fatface, Nunito_Sans } from 'next/font/google';
 
-// Configurar as fontes
-const pinyonScript = Pinyon_Script({
+// Configurar Abril Fatface para títulos
+const abrilFatface = Abril_Fatface({
   weight: '400',
   subsets: ['latin'],
-  variable: '--font-pinyon',
+  variable: '--font-abril',
 });
 
-const sendFlowers = Send_Flowers({
-  weight: '400',
+// Configurar Nunito Sans para textos
+const nunitoSans = Nunito_Sans({
+  weight: ['400', '600', '700', '800', '900'],
   subsets: ['latin'],
-  variable: '--font-send-flowers',
-});
-
-// Configurar a fonte Yellowtail
-const yellowtail = Yellowtail({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-yellowtail',
+  variable: '--font-nunito',
 });
 
 // Classes CSS para as fontes
-const pinyonFont = pinyonScript.className;
-const sendFlowersFont = sendFlowers.className;
-const yellowtailFont = yellowtail.className; // Nova classe para Yellowtail
+const abrilFont = abrilFatface.className;
+const nunitoFont = nunitoSans.className;
 
 // Componente de Cursor Customizado com Trail (só desktop)
 const CustomCursor = () => {
@@ -195,7 +187,7 @@ const CinematicTransition = ({ isAnimating }: { isAnimating: boolean }) => {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 }}
             >
               {i === 2 && (
-                <motion.span className={`absolute inset-0 flex items-center justify-center text-white text-4xl md:text-7xl italic tracking-tighter ${yellowtailFont}`}
+                <motion.span className={`absolute inset-0 flex items-center justify-center text-white text-4xl md:text-7xl italic tracking-tighter ${abrilFont}`}
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
                   LOVE IS RAYSSA
                 </motion.span>
@@ -263,7 +255,7 @@ const MagicGiftBox = () => {
             className="text-center"
           >
             <motion.h2
-              className={`text-4xl md:text-7xl ${yellowtailFont} mb-8 md:mb-12 px-4 text-slate-800`}
+              className={`text-4xl md:text-7xl ${abrilFont} mb-8 md:mb-12 px-4 text-slate-800`}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
@@ -322,7 +314,7 @@ const MagicGiftBox = () => {
             </motion.div>
 
             <motion.p
-              className={`mt-8 md:mt-12 text-2xl md:text-3xl text-slate-600 px-4 ${sendFlowersFont}`}
+              className={`mt-8 md:mt-12 text-2xl md:text-3xl text-slate-600 px-4 ${nunitoFont} italic font-medium`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
@@ -373,7 +365,7 @@ const MagicGiftBox = () => {
             </motion.div>
 
             <motion.p
-              className={`absolute bottom-10 text-2xl md:text-4xl ${sendFlowersFont} text-slate-700`}
+              className={`absolute bottom-10 text-2xl md:text-4xl ${nunitoFont} italic font-medium text-slate-700`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5 }}
@@ -437,7 +429,7 @@ const MagicGiftBox = () => {
                   transition={{ delay: 0.3 }}
                 >
                   <Heart size={24} className="text-rose-500 md:w-8 md:h-8" fill="currentColor" />
-                  <h3 className={`text-4xl sm:text-5xl md:text-6xl ${yellowtailFont} text-rose-600`}>
+                  <h3 className={`text-4xl sm:text-5xl md:text-6xl ${abrilFont} text-rose-600`}>
                     Para Você
                   </h3>
                   <Heart size={24} className="text-rose-500 md:w-8 md:h-8" fill="currentColor" />
@@ -453,11 +445,11 @@ const MagicGiftBox = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                 >
-                  <p className={`text-2xl md:text-3xl text-center text-rose-600 ${yellowtailFont}`}>
+                  <p className={`text-2xl md:text-3xl text-center text-rose-600 ${abrilFont}`}>
                     "Feliz aniversário meu amor!"
                   </p>
 
-                  <div className={`space-y-4 md:space-y-5 text-lg md:text-2xl ${sendFlowersFont}`}>
+                  <div className={`space-y-4 md:space-y-5 text-lg md:text-2xl ${nunitoFont} font-medium`}>
                     <p>
                       Espero que com esse site você consiga ver o quanto você é especial para mim. 
                       Cada palavra aqui foi escrita pensando em você, em nós, e em tudo que vivemos juntos.
@@ -468,7 +460,7 @@ const MagicGiftBox = () => {
                       Você me completa de uma forma que eu nunca imaginei ser possível.
                     </p>
 
-                    <p className="font-semibold text-rose-600">
+                    <p className="font-semibold text-rose-600 italic">
                       Nunca perca esse seu brilho de cair o queixo. Você ilumina minha vida todos os dias.
                     </p>
                   </div>
@@ -504,7 +496,7 @@ const MagicGiftBox = () => {
                         className="text-center space-y-8"
                       >
                         <motion.h4
-                          className={`text-3xl md:text-4xl text-rose-600 leading-tight ${yellowtailFont}`}
+                          className={`text-3xl md:text-4xl text-rose-600 leading-tight ${abrilFont}`}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.2 }}
@@ -602,7 +594,7 @@ const MagicGiftBox = () => {
 
                               {/* Texto */}
                               <motion.p
-                                className={`text-2xl md:text-3xl font-black text-white tracking-wide ${yellowtailFont}`}
+                                className={`text-2xl md:text-3xl font-black text-white tracking-wide ${abrilFont}`}
                                 animate={{
                                   opacity: [0.9, 1, 0.9],
                                 }}
@@ -698,12 +690,12 @@ const MagicGiftBox = () => {
                         </div>
 
                         <motion.h4
-                          className={`text-3xl md:text-4xl text-center text-rose-600 mb-6 ${yellowtailFont}`}
+                          className={`text-3xl md:text-4xl text-center text-rose-600 mb-6 ${abrilFont}`}
                           initial={{ opacity: 0, y: -20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.2 }}
                         >
-                          Seu Presente!
+                           Seu Presente! 
                         </motion.h4>
 
                         {/* Imagem do Headset */}
@@ -740,13 +732,13 @@ const MagicGiftBox = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.6 }}
                         >
-                          <h5 className={`text-3xl md:text-4xl text-slate-800 ${yellowtailFont}`}>
+                          <h5 className={`text-3xl md:text-4xl text-slate-800 ${abrilFont}`}>
                             Logitech G PRO X
                           </h5>
-                          <p className={`text-xl md:text-2xl text-rose-600 ${yellowtailFont}`}>
+                          <p className={`text-xl md:text-2xl text-rose-600 ${abrilFont}`}>
                             Wireless Gaming Headset
                           </p>
-                          <p className={`text-base md:text-lg text-slate-600 italic pt-2 md:pt-3 ${yellowtailFont}`}>
+                          <p className={`text-base md:text-lg text-slate-600 italic pt-2 md:pt-3 ${nunitoFont} font-medium`}>
                             Para você curtir seus jogos com o melhor som! 🎮
                           </p>
                         </motion.div>
@@ -774,10 +766,10 @@ const MagicGiftBox = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 2.5 }}
                 >
-                  <p className={`text-3xl md:text-4xl text-rose-600 ${yellowtailFont}`}>
+                  <p className={`text-3xl md:text-4xl text-rose-600 ${abrilFont}`}>
                     Te amo S2
                   </p>
-                  <p className={`text-lg md:text-xl text-slate-500 italic ${yellowtailFont}`}>
+                  <p className={`text-lg md:text-xl text-slate-500 italic ${nunitoFont} font-medium`}>
                     Com todo meu amor, hoje e sempre
                   </p>
                 </motion.div>
@@ -815,7 +807,7 @@ const MagicGiftBox = () => {
               {/* Footer Decorativo */}
               <div className="bg-gradient-to-r from-rose-50 to-pink-50 p-4 border-t-2 border-rose-100">
                 <motion.p
-                  className={`text-center text-base md:text-lg text-slate-500 italic ${yellowtailFont}`}
+                  className={`text-center text-base md:text-lg text-slate-500 italic ${nunitoFont} font-medium`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 2.9 }}
@@ -992,7 +984,7 @@ export default function LovePage() {
   };
 
   return (
-    <div className={`overflow-x-hidden ${pinyonScript.variable} ${sendFlowers.variable} ${yellowtail.variable}`}>
+    <div className={`overflow-x-hidden ${abrilFatface.variable} ${nunitoSans.variable}`}>
       <CustomCursor />
       <CinematicTransition isAnimating={isCinematic} />
       <HeartExplosion show={showExplosion} onComplete={() => setShowExplosion(false)} />
@@ -1036,7 +1028,7 @@ export default function LovePage() {
             className="relative z-10"
           >
             <motion.h1
-              className={`text-6xl sm:text-8xl md:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] mb-6 md:mb-8 ${yellowtailFont}`}
+              className={`text-6xl sm:text-8xl md:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] mb-6 md:mb-8 ${abrilFont}`}
               style={{
                 background: "linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #f87171 100%)",
                 WebkitBackgroundClip: "text",
@@ -1058,7 +1050,7 @@ export default function LovePage() {
               transition={{ delay: 0.5, duration: 1 }}
             >
               <motion.p
-                className={`text-xl sm:text-2xl md:text-3xl text-red-500 italic px-2 ${yellowtailFont}`}
+                className={`text-xl sm:text-2xl md:text-3xl text-red-500 italic px-2 ${nunitoFont} font-medium`}
                 animate={{ opacity: [0.7, 1, 0.7] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -1102,7 +1094,7 @@ export default function LovePage() {
 
                 {/* Texto centralizado e com interação */}
                 <div className="flex flex-col items-center">
-                  <span className={`text-xl md:text-3xl font-bold text-slate-700 tracking-tight flex items-center gap-2 ${yellowtailFont}`}>
+                  <span className={`text-xl md:text-3xl font-bold text-slate-700 tracking-tight flex items-center gap-2 ${nunitoFont} font-semibold`}>
                     Clique para ver a lista
                   </span>
                   {/* Linha decorativa que expande no hover */}
@@ -1123,7 +1115,7 @@ export default function LovePage() {
             transition={{ duration: 2, repeat: Infinity }}
           >
             <Sparkles size={16} className="text-red-500 md:w-5 md:h-5" />
-            <span className={yellowtailFont}>Scroll para baixo</span>
+            <span className={`${nunitoFont} font-medium`}>Scroll para baixo</span>
           </motion.div>
         </section>
 
@@ -1158,7 +1150,7 @@ export default function LovePage() {
           <div className="max-w-7xl mx-auto relative">
             <FadeInSection>
               <motion.div className="text-center mb-16 md:mb-24 relative z-10">
-                <p className={`text-3xl sm:text-4xl md:text-6xl font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase text-gray-400 ${yellowtailFont}`}>
+                <p className={`text-3xl sm:text-4xl md:text-6xl font-bold tracking-[0.15em] md:tracking-[0.2em] uppercase text-gray-400 ${abrilFont}`}>
                   Aqui vai uma pequena lista do porquê amo você
                 </p>
               </motion.div>
@@ -1172,7 +1164,7 @@ export default function LovePage() {
                   transition={{ duration: 0.3 }}
                 >
                   <motion.h2
-                    className={`text-5xl sm:text-6xl md:text-8xl font-black uppercase italic leading-none relative ${yellowtailFont}`}
+                    className={`text-5xl sm:text-6xl md:text-8xl font-black uppercase italic leading-none relative ${abrilFont}`}
                     initial={{ x: -50, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     viewport={{ once: false }}
@@ -1194,7 +1186,7 @@ export default function LovePage() {
                     Absurda
                   </motion.h2>
                   <motion.p
-                    className={`text-xl sm:text-2xl md:text-3xl leading-relaxed text-slate-700 border-l-4 border-red-600 pl-4 md:pl-6 ${yellowtailFont}`}
+                    className={`text-xl sm:text-2xl md:text-3xl leading-relaxed text-slate-700 border-l-4 border-red-600 pl-4 md:pl-6 ${nunitoFont} font-medium`}
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: false }}
@@ -1282,7 +1274,7 @@ export default function LovePage() {
               </motion.div>
 
               <motion.h2
-                className={`text-5xl sm:text-7xl md:text-9xl font-black uppercase italic mb-6 md:mb-8 tracking-tighter ${yellowtailFont}`}
+                className={`text-5xl sm:text-7xl md:text-9xl font-black uppercase italic mb-6 md:mb-8 tracking-tighter ${abrilFont}`}
                 initial={{ x: -50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: false }}
@@ -1294,7 +1286,7 @@ export default function LovePage() {
               </motion.h2>
 
               <motion.p
-                className={`text-2xl sm:text-3xl md:text-5xl font-light leading-tight max-w-4xl ${yellowtailFont}`}
+                className={`text-2xl sm:text-3xl md:text-5xl font-light leading-tight max-w-4xl ${nunitoFont} font-medium`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
@@ -1336,7 +1328,7 @@ export default function LovePage() {
           <div className="max-w-7xl mx-auto relative z-10">
             <FadeInSection>
               <motion.h2
-                className={`text-6xl sm:text-7xl md:text-[12rem] font-black text-center leading-[0.8] mb-12 md:mb-20 uppercase tracking-tighter px-4 ${yellowtailFont}`}
+                className={`text-6xl sm:text-7xl md:text-[12rem] font-black text-center leading-[0.8] mb-12 md:mb-20 uppercase tracking-tighter px-4 ${abrilFont}`}
                 style={{
                   background: "linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #f87171 100%)",
                   WebkitBackgroundClip: "text",
@@ -1399,7 +1391,7 @@ export default function LovePage() {
                 transition={{ duration: 0.8 }}
               >
                 <motion.p
-                  className={`text-2xl sm:text-3xl md:text-5xl italic text-slate-500 max-w-5xl mx-auto leading-relaxed ${yellowtailFont}`}
+                  className={`text-2xl sm:text-3xl md:text-5xl italic text-slate-500 max-w-5xl mx-auto leading-relaxed ${abrilFont}`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -1457,7 +1449,7 @@ export default function LovePage() {
             <div className="relative">
               {/* Título de Fundo Decorativo (Parallax) */}
               <motion.h2
-                className={`absolute -top-10 -left-10 text-[15vw] font-black text-red-500/5 uppercase pointer-events-none select-none ${yellowtailFont}`}
+                className={`absolute -top-10 -left-10 text-[15vw] font-black text-red-500/5 uppercase pointer-events-none select-none ${abrilFont}`}
                 style={{ x: useTransform(scrollYProgress, [0.6, 0.9], [0, 100]) }}
               >
                 Partner
@@ -1486,14 +1478,14 @@ export default function LovePage() {
                 <div className="lg:col-span-5 space-y-8 relative z-30">
                   <FadeInSection>
                     <div className="inline-block px-4 py-1 bg-red-600 text-white font-bold text-xs tracking-widest uppercase rounded-full mb-4">
-                      <span className={yellowtailFont}>Motivo 04</span>
+                      <span className={`${abrilFont}`}>Motivo 04</span>
                     </div>
-                    <h2 className={`text-5xl md:text-8xl font-black uppercase italic leading-[0.8] text-slate-900 ${yellowtailFont}`}>
+                    <h2 className={`text-5xl md:text-8xl font-black uppercase italic leading-[0.8] text-slate-900 ${abrilFont}`}>
                       Minha <br /> <span className="text-red-600">Companheira</span>
                     </h2>
 
                     <div className="mt-8 space-y-6">
-                      <p className={`text-2xl md:text-3xl text-slate-700 leading-relaxed font-medium ${yellowtailFont}`}>
+                      <p className={`text-2xl md:text-3xl text-slate-700 leading-relaxed font-medium ${nunitoFont} font-medium`}>
                         Fica junto comigo para qualquer coisa, mesmo que seja para ver uma serie na netflix comendo uma pringles de cebola esse momento se torna especial por ter você do meu lado.
                       </p>
 
@@ -1502,7 +1494,7 @@ export default function LovePage() {
                         whileHover={{ x: 10 }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       >
-                        <p className={`text-base md:text-lg text-gray-400 italic font-normal ${yellowtailFont}`}>
+                        <p className={`text-base md:text-lg text-gray-400 italic font-normal ${nunitoFont} font-medium`}>
                           (a não ser que seja para ver o jogo do GIGANTE Palmeiras)
                         </p>
                       </motion.div>
@@ -1553,7 +1545,7 @@ export default function LovePage() {
               </motion.div>
 
               <motion.blockquote
-                className={`text-4xl sm:text-5xl md:text-7xl font-bold italic text-slate-800 mb-6 md:mb-8 leading-tight ${yellowtailFont}`}
+                className={`text-4xl sm:text-5xl md:text-7xl font-bold italic text-slate-800 mb-6 md:mb-8 leading-tight ${abrilFont}`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
@@ -1563,7 +1555,7 @@ export default function LovePage() {
               </motion.blockquote>
 
               <motion.cite
-                className={`text-xl sm:text-2xl md:text-3xl text-red-600 font-semibold not-italic ${yellowtailFont}`}
+                className={`text-xl sm:text-2xl md:text-3xl text-red-600 font-semibold not-italic ${abrilFont}`}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: false }}
@@ -1573,7 +1565,7 @@ export default function LovePage() {
               </motion.cite>
 
               <motion.p
-                className={`mt-12 md:mt-16 text-3xl sm:text-4xl md:text-5xl font-light text-slate-700 ${yellowtailFont}`}
+                className={`mt-12 md:mt-16 text-3xl sm:text-4xl md:text-5xl font-light text-slate-700 ${nunitoFont} font-medium`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: false }}
@@ -1598,7 +1590,7 @@ export default function LovePage() {
           <div className="max-w-7xl mx-auto">
             <FadeInSection>
               <div className="flex flex-col items-start mb-16 md:mb-24">
-                <h2 className={`text-7xl md:text-[10rem] font-black italic uppercase tracking-tighter leading-none text-slate-900 ${yellowtailFont}`}>
+                <h2 className={`text-7xl md:text-[10rem] font-black italic uppercase tracking-tighter leading-none text-slate-900 ${abrilFont}`}>
                   O QUE  <br /> <span className="text-red-600">QUERO?</span>
                 </h2>
                 <div className="h-1.5 w-32 bg-red-600 mt-4" />
@@ -1640,13 +1632,13 @@ export default function LovePage() {
 
                   {/* Conteúdo sobre a imagem */}
                   <div className="absolute inset-0 z-10 p-8 flex flex-col justify-end text-white">
-                    <span className={`text-red-500 font-black text-xl mb-2 italic tracking-widest ${yellowtailFont}`}>
+                    <span className={`text-red-500 font-black text-xl mb-2 italic tracking-widest ${abrilFont}`}>
                       STEP {dream.icon}
                     </span>
-                    <h3 className={`text-4xl font-black uppercase italic tracking-tighter mb-3 leading-none ${yellowtailFont}`}>
+                    <h3 className={`text-4xl font-black uppercase italic tracking-tighter mb-3 leading-none ${abrilFont}`}>
                       {dream.title}
                     </h3>
-                    <p className={`text-slate-200 font-medium leading-tight text-lg opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 group-active:translate-y-0 ${yellowtailFont}`}>
+                    <p className={`text-slate-200 font-medium leading-tight text-lg opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 group-active:translate-y-0 ${nunitoFont} font-medium`}>
                       {dream.text}
                     </p>
                   </div>
@@ -1681,7 +1673,7 @@ export default function LovePage() {
                 exit={{ scale: 0, opacity: 0, borderRadius: "100%" }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 onAnimationComplete={() => {
-                  // Após 1.5s mostrando a mensagem, começa a sair
+                  // Após 1.5s mostrando a mensagem, começa a saída
                   setTimeout(() => {
                     setShowYesMessage(false);
                     // Após a animação de saída (0.5s), rola para a seção do presente
@@ -1699,7 +1691,7 @@ export default function LovePage() {
                   transition={{ duration: 0.6 }}
                   className="text-center"
                 >
-                  <h2 className={`text-6xl md:text-9xl font-black text-white italic uppercase tracking-tighter ${yellowtailFont}`}>
+                  <h2 className={`text-6xl md:text-9xl font-black text-white italic uppercase tracking-tighter ${abrilFont}`}>
                     É BOM MESMO
                   </h2>
                 </motion.div>
@@ -1710,11 +1702,11 @@ export default function LovePage() {
           <div className="text-center space-y-12 relative z-10">
             <FadeInSection>
               <div className="space-y-4">
-                <span className={`text-red-500 font-bold uppercase tracking-[0.3em] text-base ${yellowtailFont}`}>
+                <span className={`text-red-500 font-bold uppercase tracking-[0.3em] text-base ${nunitoFont} font-semibold`}>
                   E uma pergunta
                 </span>
 
-                <h2 className={`text-6xl md:text-9xl font-black italic uppercase tracking-tighter leading-none text-slate-900 ${yellowtailFont}`}>
+                <h2 className={`text-6xl md:text-9xl font-black italic uppercase tracking-tighter leading-none text-slate-900 ${abrilFont}`}>
                   VOCÊ <br /> <span className="text-red-600">ME AMA?</span>
                 </h2>
               </div>
@@ -1737,7 +1729,7 @@ export default function LovePage() {
                       whileHover={{ scale: 1.1, boxShadow: "0 0 30px rgba(220, 38, 38, 0.6)" }}
                       whileTap={{ scale: 0.9 }}
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      className={`px-12 py-4 bg-red-600 text-white font-black text-3xl rounded-full shadow-2xl z-20 w-48 ${yellowtailFont}`}
+                      className={`px-12 py-4 bg-red-600 text-white font-black text-3xl rounded-full shadow-2xl z-20 w-48 ${abrilFont}`}
                     >
                       SIM!
                     </motion.button>
@@ -1755,7 +1747,7 @@ export default function LovePage() {
                         damping: 25,
                         mass: 0.8
                       }}
-                      className={`px-12 py-4 border-2 border-slate-200 text-slate-300 font-black text-3xl rounded-full w-48 z-10 ${yellowtailFont}`}
+                      className={`px-12 py-4 border-2 border-slate-200 text-slate-300 font-black text-3xl rounded-full w-48 z-10 ${abrilFont}`}
                     >
                       NÃO
                     </motion.button>
@@ -1807,7 +1799,7 @@ export default function LovePage() {
             className="relative z-10 text-center"
           >
             <motion.h3
-              className={`text-3xl sm:text-4xl md:text-5xl text-red-600 font-black uppercase tracking-widest mb-4 md:mb-6 ${yellowtailFont}`}
+              className={`text-3xl sm:text-4xl md:text-5xl text-red-600 font-black uppercase tracking-widest mb-4 md:mb-6 ${abrilFont}`}
               animate={{
                 textShadow: [
                   "0 0 20px rgba(220, 38, 38, 0.5)",
@@ -1820,7 +1812,7 @@ export default function LovePage() {
               Para Sempre
             </motion.h3>
             <motion.p
-              className={`text-gray-500 font-medium tracking-[0.3em] md:tracking-[0.5em] uppercase text-sm sm:text-base ${yellowtailFont}`}
+              className={`text-gray-500 font-medium tracking-[0.3em] md:tracking-[0.5em] uppercase text-sm sm:text-base ${nunitoFont} font-medium`}
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
